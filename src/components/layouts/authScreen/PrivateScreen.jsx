@@ -7,6 +7,7 @@ import Home from "../../pages/home/Home";
 import UserList from "../../pages/UserList/UserList"
 import RegisterScreen from "./RegisterScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import User from "../../pages/user/User";
 const PrivateScreen = ({history}) => {
   const [error, setError] = useState("");
   const [privateData, setPrivateData] = useState("");
@@ -55,6 +56,7 @@ const PrivateScreen = ({history}) => {
             <UserList/>
           </Route>
           <Route exact path="/register" component={RegisterScreen} />
+          <Route exact path="/user/:userID" component={User} />
         </Switch>
         
         
