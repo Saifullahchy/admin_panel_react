@@ -9,3 +9,19 @@
     align-items: center;
 
 }
+
+.userListEdit{
+    border: none;
+    width: 60px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: brown;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.userListDelete{
+    font-size: 40px;
+    color: rgb(131, 16, 16);
+    cursor: pointer;
+}

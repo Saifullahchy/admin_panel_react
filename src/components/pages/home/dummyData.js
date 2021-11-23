@@ -39,3 +39,10 @@ export const  UserData = [
     },
     
   ];
+
+  export const userRows = [
+    { id: 1, username: 'Jonsnow', 
+    email: 'Jonsnow@gmail.com', 
+    status: 'active', 
+     },
+  ];

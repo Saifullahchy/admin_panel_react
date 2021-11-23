@@ -85,7 +85,7 @@ import { color } from '@mui/system';
                         <MarkEmailUnreadTwoTone className="sidebarIcon"/>
                         Mail
                     </li>
-                    <Link to="/user" style ={{textDecoration: 'none' ,color:'white'}}> <li className="sitebarListItem">
+                    <Link to="/users" style ={{textDecoration: 'none' ,color:'white'}}> <li className="sitebarListItem">
                        <AccountCircleTwoTone className="sidebarIcon"/>
                         User
                     </li></Link>

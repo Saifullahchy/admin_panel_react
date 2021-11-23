@@ -5,6 +5,7 @@ import Topbar from "../Dashboard/topbar/Topbar";
 import Sidebar from "../Dashboard/Sidebar/Sidebar";
 import Home from "../../pages/home/Home";
 import UserList from "../../pages/UserList/UserList"
+import RegisterScreen from "./RegisterScreen";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const PrivateScreen = ({history}) => {
   const [error, setError] = useState("");
@@ -50,9 +51,10 @@ const PrivateScreen = ({history}) => {
           <Route exact path="/">
             <Home/>
           </Route>
-          <Route exact path="/user">
+          <Route exact path="/users">
             <UserList/>
           </Route>
+          <Route exact path="/register" component={RegisterScreen} />
         </Switch>
         
         
