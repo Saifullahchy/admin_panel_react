@@ -1,0 +1,11 @@
+.userList{
+    flex: 4;
+}
+.button-user{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+
+}

@@ -14,6 +14,7 @@ import {LineStyle,
         MarkEmailUnreadTwoTone,
         AccountCircleTwoTone,
         LogoutTwoTone} from '@mui/icons-material';
+import { color } from '@mui/system';
 
 
         export default function Sidebar({history}) {
@@ -32,10 +33,10 @@ import {LineStyle,
                 <div className="sidebarMenu">
                 <h3 className="sidebarTitle">Dashboard</h3>
                 <ul className="sidebarList">
-                    <li className="sitebarListItem active">
+                <Link to="/" style ={{textDecoration: 'none' ,color:'white'}}> <li className="sitebarListItem active">
                         <LineStyle className="sidebarIcon"/>
                         Home
-                    </li>
+                    </li></Link>
                     <li className="sitebarListItem">
                         <Timeline className="sidebarIcon"/>
                         Analytics
@@ -84,10 +85,10 @@ import {LineStyle,
                         <MarkEmailUnreadTwoTone className="sidebarIcon"/>
                         Mail
                     </li>
-                    <li className="sitebarListItem">
-                        <AccountCircleTwoTone className="sidebarIcon"/>
+                    <Link to="/user" style ={{textDecoration: 'none' ,color:'white'}}> <li className="sitebarListItem">
+                       <AccountCircleTwoTone className="sidebarIcon"/>
                         User
-                    </li>
+                    </li></Link>
                 </ul>
                 </div>
                 <div className="sidebarMenu">

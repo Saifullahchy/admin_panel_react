@@ -3,7 +3,9 @@ import axios from "axios";
 import "./PrivateScreen.css";
 import Topbar from "../Dashboard/topbar/Topbar";
 import Sidebar from "../Dashboard/Sidebar/Sidebar";
-import Home from "../../pages/Home";
+import Home from "../../pages/home/Home";
+import UserList from "../../pages/UserList/UserList"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const PrivateScreen = ({history}) => {
   const [error, setError] = useState("");
   const [privateData, setPrivateData] = useState("");
@@ -39,18 +41,26 @@ const PrivateScreen = ({history}) => {
   return error ? (
     <span className="error-message">{error}</span>
   ) : (
-    <div>
+    <Router>
       {/* {privateData} */}
       <Topbar/>
       <div className="container">
         <Sidebar/>
-        <Home/>
+        <Switch>
+          <Route exact path="/">
+            <Home/>
+          </Route>
+          <Route exact path="/user">
+            <UserList/>
+          </Route>
+        </Switch>
+        
         
         {/* <button onClick= {logoutHandler}>Logout</button> */}
       </div>
         
         
-    </div>
+    </Router>
   );
 };
 
