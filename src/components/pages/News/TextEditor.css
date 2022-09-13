@@ -1,0 +1,23 @@
+.container_news{
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.form-group{
+    margin-top: 10px;
+}
+
+.font-weight-bold{
+    font-weight: 500;
+}
+
+.editor_des{
+    height: 400px auto;
+}
+
+.btn{
+    background: rgb(170, 39, 39);
+    color: aliceblue; 
+    
+     
+}
