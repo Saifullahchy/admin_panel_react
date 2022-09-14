@@ -9,14 +9,21 @@ import LoginScreen from "./components/layouts/authScreen/LoginScreen";
 import RegisterScreen from "./components/layouts/authScreen/RegisterScreen";
 import ForgotPasswordScreen from "./components/layouts/authScreen/ForgotPasswordScreen";
 import ResetPasswordScreen from "./components/layouts/authScreen/ResetPasswordScreen";
+import EditNews from "./components/pages/News/EditNews";
 
 const App = () => {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/*" element={<PrivateScreen />} />
-        </Route>
+        <Route
+          path="/dashboard/*"
+          element={
+            <PrivateScreen>
+              <PrivateRoute />
+            </PrivateScreen>
+          }
+          exact
+        />
 
         <Route path="/login" element={<LoginScreen />} />
 
@@ -25,6 +32,7 @@ const App = () => {
           path="/passwordreset/:resetToken"
           element={<ResetPasswordScreen />}
         />
+       
       </Routes>
     </div>
   );

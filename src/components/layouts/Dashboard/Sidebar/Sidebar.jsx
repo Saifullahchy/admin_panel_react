@@ -29,7 +29,10 @@ export default function Sidebar({ history }) {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link
+              to="/dashboard"
+              style={{ textDecoration: "none", color: "white" }}
+            >
               {" "}
               <li className="sitebarListItem active">
                 <LineStyle className="sidebarIcon" />
@@ -47,7 +50,7 @@ export default function Sidebar({ history }) {
           <h3 className="sidebarTitle">Pages</h3>
           <ul className="sidebarList">
             <Link
-              to="/news-post"
+              to="news-post"
               style={{ textDecoration: "none", color: "white" }}
             >
               <li className="sitebarListItem ">

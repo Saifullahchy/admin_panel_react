@@ -12,12 +12,19 @@ const NewsPage = () => {
   const [userInfo, setuserInfo] = useState({
     title: "",
     description: "",
+    image: "",
   });
-
+  const formData = new FormData();
   const onChangeValue = (e) => {
     setuserInfo({
       ...userInfo,
       [e.target.name]: e.target.value,
+    });
+  };
+  const handlePhoto = (e) => {
+    setuserInfo({
+      ...userInfo,
+      image: e.target.files[0],
     });
   };
   const ondescription = (value) => {
@@ -26,6 +33,9 @@ const NewsPage = () => {
 
   const [isError, setError] = useState(null);
   const addDetails = async (event) => {
+    formData.append("title", userInfo.title);
+    formData.append("description", userInfo.description);
+    formData.append("image", userInfo.image);
     try {
       event.preventDefault();
       event.persist();
@@ -34,13 +44,14 @@ const NewsPage = () => {
         return;
       }
       axios
-        .post(`http://localhost:5000/news`, {
-          title: userInfo.title,
-          description: userInfo.description,
-        })
+        .post(`http://localhost:5000/news`, formData)
         .then(() => {
           userInfo.title = "";
           userInfo.description = "";
+          userInfo.image = "";
+        })
+        .then(() => {
+          window.location.reload(true);
         });
     } catch (error) {
       throw error;
@@ -57,9 +68,7 @@ const NewsPage = () => {
               {" "}
               Add News
             </h3>
-            <div className="btn btn-primary col col-3 text-center">
-              All News
-            </div>
+
             <div className="form-row">
               <div className="form-group col-md-12">
                 <label className="font-weight-bold">
@@ -71,12 +80,23 @@ const NewsPage = () => {
                   name="title"
                   value={userInfo.title}
                   onChange={onChangeValue}
-                  className="form-control"
-                  placeholder="Title"
+                  className="form-control border"
+                  placeholder="Add title here"
                   required
                 />
               </div>
-              <div className="clearfix"></div>
+              <div className="clearfix">
+                <input
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  // value={inputs.image}
+                  name="image"
+                  onChange={handlePhoto}
+                  className="form-control"
+                  //   disabled
+                  placeholder="Upload Image"
+                />
+              </div>
               <div className="form-group col-md-12 editor">
                 <label className="font-weight-bold">
                   {" "}

@@ -7,15 +7,16 @@ import EditorToolbar, {
   formats,
 } from "../../layouts/Dashboard/TextEditor/EditorToolbar";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 const EditNews = () => {
   let navigate = useNavigate();
-  
+
   const [userInfo, setuserInfo] = useState({
     description: "",
   });
-  const id = window.location.href.split("/")[4];
+  // const id = window.location.href.split("/")[4];
+  const { id } = useParams();
   const [data, setData] = useState("");
 
   const onChangeValue = (e) => {
@@ -68,39 +69,57 @@ const EditNews = () => {
       throw error;
     }
   };
-  console.log(userInfo.description);
+  console.log(userInfo.image);
   return (
-    <div>
-      <div className="home">
-        <div className="container_news">
-          <div className="row">
+    <div className="home">
+      <div className="container_news">
+        <div className="row">
+          <div>
             <form onSubmit={updateDetails} className="update__forms">
               <h3 className="myaccount-content" style={{ textAlign: "center" }}>
                 {" "}
                 Edit News
               </h3>
 
-              <div className="form-row">
-                <div className="form-group col-md-12">
-                  <label className="font-weight-bold">
+              <div className="">
+                <div className=" col-md-12 ">
+                  <label className="font-weight-bold h4 ">
                     {" "}
-                    Title <span className="required"> * </span>{" "}
+                    Title <span className=""> * </span>{" "}
                   </label>
-                  {/* <input
+                  <input
                     type="text"
                     name="title"
                     value={userInfo.title}
                     onChange={onChangeValue}
                     className="form-control"
-                  /> */}
-                  {data.title}
+                  />
                 </div>
-                <div className="clearfix"></div>
-                <div className="form-group col-md-12 editor">
-                  <label className="font-weight-bold">
-                    {" "}
-                    Description <span className="required"> * </span>{" "}
-                  </label>
+                <div className="clearfix">
+                  <div
+                    className=" col-md-12 d-flex flex-col "
+                    style={{
+                      marginTop: "30px",
+                    }}
+                  >
+                    <p className="text-center">Feature Image</p>
+                    <img
+                      src={`http://localhost:5000/static/${data.image}`}
+                      alt=""
+                      className="rounded mx-auto d-block"
+                      style={{
+                        width: "400px",
+                      }}
+                    />
+                  </div>
+                </div>
+                <div
+                  className="col-md-12 editor"
+                  style={{
+                    marginTop: "30px",
+                  }}
+                >
+                  <label className="font-weight-bold">Description</label>
                   <EditorToolbar toolbarId={"t1"} />
                   <ReactQuill
                     className="editor_des"
@@ -117,7 +136,7 @@ const EditNews = () => {
 
                 <br />
                 {isError !== null && <div className="errors"> {isError} </div>}
-                <div className="form-group col-sm-12 text-right">
+                <div className=" col-sm-12 text-right">
                   <button type="submit" className="btn btn__theme">
                     Edit
                   </button>

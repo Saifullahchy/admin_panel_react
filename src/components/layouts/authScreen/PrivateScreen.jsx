@@ -6,14 +6,21 @@ import Sidebar from "../Dashboard/Sidebar/Sidebar";
 import Home from "../../pages/home/Home";
 import UserList from "../../pages/UserList/UserList";
 import RegisterScreen from "./RegisterScreen";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import User from "../../pages/user/User";
 import NewsPage from "../../pages/News/NewsPage";
 import AllNews from "../../pages/News/AllNews";
 import EditNews from "../../pages/News/EditNews";
+
 const PrivateScreen = () => {
   const [error, setError] = useState("");
   const [privateData, setPrivateData] = useState("");
+  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchPrivateDate = async () => {
@@ -33,11 +40,12 @@ const PrivateScreen = () => {
       } catch (error) {
         localStorage.removeItem("authToken");
         setError("You are not authorized please login");
+        navigation("/login");
       }
     };
 
     fetchPrivateDate();
-  }, [history]);
+  }, []);
 
   const logoutHandler = () => {
     localStorage.removeItem("authToken");
@@ -54,17 +62,17 @@ const PrivateScreen = () => {
         <Sidebar />
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} exact />
 
-          <Route path="/news-post" element={<NewsPage />} />
+          <Route path="/news-post" exact element={<NewsPage />} />
 
-          <Route path="/users" element={<UserList />} />
+          <Route path="/users" exact element={<UserList />} />
 
-          <Route path="/news/all-news" element={<AllNews />} />
+          <Route path="/news/all-news" exact element={<AllNews />} />
 
-          <Route path="/register" element={<RegisterScreen />} />
-          <Route path="/user/:userID" component={<User />} />
-          <Route path="/editnews/:id" component={<EditNews />} />
+          <Route path="/register" exact element={<RegisterScreen />} />
+          <Route path="/user/:userID" exact element={<User />} />
+          <Route path="/news/all-news/editnews/:id" element={<EditNews />} />
         </Routes>
         {/* <button onClick= {logoutHandler}>Logout</button> */}
       </div>

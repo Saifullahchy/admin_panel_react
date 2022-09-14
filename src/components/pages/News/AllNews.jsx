@@ -37,7 +37,7 @@ const AllNews = () => {
   });
 
   const handleEdit = (id) => {
-    navigate(`/editnews/${id}`);
+    navigate(`editnews/${id}`);
   };
 
   return (

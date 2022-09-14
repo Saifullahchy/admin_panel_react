@@ -11,7 +11,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (localStorage.getItem("authToken")) {
-      navigate("/");
+      navigate("/dashboard");
     }
   }, []);
 
@@ -31,7 +31,7 @@ const LoginScreen = () => {
         config
       );
       localStorage.setItem("authToken", data.token);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
