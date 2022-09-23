@@ -1,15 +1,15 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
 // Routing
-import PrivateRoute from "./components/routing/PrivateRoute";
+import PrivateRoute from './components/routing/PrivateRoute';
 
 // Screens
-import PrivateScreen from "./components/layouts/authScreen/PrivateScreen";
-import LoginScreen from "./components/layouts/authScreen/LoginScreen";
-import RegisterScreen from "./components/layouts/authScreen/RegisterScreen";
-import ForgotPasswordScreen from "./components/layouts/authScreen/ForgotPasswordScreen";
-import ResetPasswordScreen from "./components/layouts/authScreen/ResetPasswordScreen";
-import EditNews from "./components/pages/News/EditNews";
+import PrivateScreen from './components/layouts/authScreen/PrivateScreen';
+import LoginScreen from './components/layouts/authScreen/LoginScreen';
+import RegisterScreen from './components/layouts/authScreen/RegisterScreen';
+import ForgotPasswordScreen from './components/layouts/authScreen/ForgotPasswordScreen';
+import ResetPasswordScreen from './components/layouts/authScreen/ResetPasswordScreen';
+import EditNews from './components/pages/News/EditNews';
 
 const App = () => {
   return (
@@ -32,7 +32,6 @@ const App = () => {
           path="/passwordreset/:resetToken"
           element={<ResetPasswordScreen />}
         />
-       
       </Routes>
     </div>
   );

@@ -59,7 +59,7 @@ const AllNews = () => {
                     {serverData &&
                       serverData.map((item, idx) => {
                         return (
-                          <tr key={idx}>
+                          <tr key={idx} style={{ height: "70px" }}>
                             <td>{item.title}</td>
                             {/* <td
                               dangerouslySetInnerHTML={{
@@ -69,6 +69,8 @@ const AllNews = () => {
                             <td
                               style={{
                                 display: "flex",
+                                alignItems: "center",
+                                height: "70px",
                               }}
                             >
                               <button
@@ -84,7 +86,8 @@ const AllNews = () => {
                               </button>
                               <Delete
                                 style={{
-                                  fontSize: "25px",
+                                  fontSize: "30px",
+                                  marginLeft: "30px",
                                   textAlign: "center",
                                   cursor: "pointer",
                                   color: "#991A1E",

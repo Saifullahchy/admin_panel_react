@@ -11,6 +11,7 @@ import axios from "axios";
 const NewsPage = () => {
   const [userInfo, setuserInfo] = useState({
     title: "",
+    subTitle: "",
     description: "",
     image: "",
   });
@@ -34,6 +35,7 @@ const NewsPage = () => {
   const [isError, setError] = useState(null);
   const addDetails = async (event) => {
     formData.append("title", userInfo.title);
+    formData.append("subtitle", userInfo.subTitle);
     formData.append("description", userInfo.description);
     formData.append("image", userInfo.image);
     try {
@@ -47,6 +49,7 @@ const NewsPage = () => {
         .post(`http://localhost:5000/news`, formData)
         .then(() => {
           userInfo.title = "";
+          userInfo.subTitle="";
           userInfo.description = "";
           userInfo.image = "";
         })
@@ -79,6 +82,21 @@ const NewsPage = () => {
                   type="text"
                   name="title"
                   value={userInfo.title}
+                  onChange={onChangeValue}
+                  className="form-control border"
+                  placeholder="Add title here"
+                  required
+                />
+              </div>
+              <div className="form-group col-md-12">
+                <label className="font-weight-bold">
+                  {" "}
+                  Sub title <span className="required"> * </span>{" "}
+                </label>
+                <input
+                  type="text"
+                  name="subTitle"
+                  value={userInfo.subTitle}
                   onChange={onChangeValue}
                   className="form-control border"
                   placeholder="Add title here"

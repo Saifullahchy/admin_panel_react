@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import "./LoginScreen.css";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import './LoginScreen.css';
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      navigate("/dashboard");
+    if (localStorage.getItem('authToken')) {
+      navigate('/dashboard/home');
     }
   }, []);
 
@@ -20,22 +20,22 @@ const LoginScreen = () => {
 
     const config = {
       header: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        'http://localhost:5000/api/auth/login',
         { email, password },
         config
       );
-      localStorage.setItem("authToken", data.token);
-      navigate("/dashboard");
+      localStorage.setItem('authToken', data.token);
+      navigate('/dashboard/home');
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
-        setError("");
+        setError('');
       }, 5000);
     }
   };
@@ -59,7 +59,7 @@ const LoginScreen = () => {
         </div>
         <div className="form-group">
           <label htmlFor="password">
-            Password:{" "}
+            Password:{' '}
             <Link to="/forgotpassword" className="login-screen__forgotpassword">
               Forgot Password?
             </Link>

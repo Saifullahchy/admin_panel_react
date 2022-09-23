@@ -1,7 +1,7 @@
-import React from "react";
-import "./Sidebar.css";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from 'react';
+import './Sidebar.css';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
   LineStyle,
   Timeline,
@@ -15,13 +15,13 @@ import {
   MarkEmailUnreadTwoTone,
   AccountCircleTwoTone,
   LogoutTwoTone,
-} from "@mui/icons-material";
-import { color } from "@mui/system";
+} from '@mui/icons-material';
+import { color } from '@mui/system';
 
 export default function Sidebar({ history }) {
   const logoutHandler = () => {
-    localStorage.removeItem("authToken");
-    this.history.push("/");
+    localStorage.removeItem('authToken');
+    this.history.push('/login');
   };
   return (
     <div className="sidebar">
@@ -30,10 +30,10 @@ export default function Sidebar({ history }) {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link
-              to="/dashboard"
-              style={{ textDecoration: "none", color: "white" }}
+              to="/dashboard/home"
+              style={{ textDecoration: 'none', color: 'white' }}
             >
-              {" "}
+              {' '}
               <li className="sitebarListItem active">
                 <LineStyle className="sidebarIcon" />
                 Home
@@ -50,8 +50,8 @@ export default function Sidebar({ history }) {
           <h3 className="sidebarTitle">Pages</h3>
           <ul className="sidebarList">
             <Link
-              to="news-post"
-              style={{ textDecoration: "none", color: "white" }}
+              to="/dashboard/news-post"
+              style={{ textDecoration: 'none', color: 'white' }}
             >
               <li className="sitebarListItem ">
                 <PostAddTwoTone className="sidebarIcon" />
@@ -60,10 +60,10 @@ export default function Sidebar({ history }) {
             </Link>
 
             <Link
-              to="news/all-news"
+              to="/dashboard/news/all-news"
               style={{
-                textDecoration: "none",
-                color: "white",
+                textDecoration: 'none',
+                color: 'white',
               }}
             >
               <li className="sitebarListItem ml-3">All News</li>
@@ -105,9 +105,9 @@ export default function Sidebar({ history }) {
             </li>
             <Link
               to="/users"
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: 'none', color: 'white' }}
             >
-              {" "}
+              {' '}
               <li className="sitebarListItem">
                 <AccountCircleTwoTone className="sidebarIcon" />
                 User

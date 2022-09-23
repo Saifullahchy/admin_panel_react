@@ -1,46 +1,46 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import "./PrivateScreen.css";
-import Topbar from "../Dashboard/topbar/Topbar";
-import Sidebar from "../Dashboard/Sidebar/Sidebar";
-import Home from "../../pages/home/Home";
-import UserList from "../../pages/UserList/UserList";
-import RegisterScreen from "./RegisterScreen";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import './PrivateScreen.css';
+import Topbar from '../Dashboard/topbar/Topbar';
+import Sidebar from '../Dashboard/Sidebar/Sidebar';
+import Home from '../../pages/home/Home';
+import UserList from '../../pages/UserList/UserList';
+import RegisterScreen from './RegisterScreen';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useNavigate,
-} from "react-router-dom";
-import User from "../../pages/user/User";
-import NewsPage from "../../pages/News/NewsPage";
-import AllNews from "../../pages/News/AllNews";
-import EditNews from "../../pages/News/EditNews";
+} from 'react-router-dom';
+import User from '../../pages/user/User';
+import NewsPage from '../../pages/News/NewsPage';
+import AllNews from '../../pages/News/AllNews';
+import EditNews from '../../pages/News/EditNews';
 
 const PrivateScreen = () => {
-  const [error, setError] = useState("");
-  const [privateData, setPrivateData] = useState("");
+  const [error, setError] = useState('');
+  const [privateData, setPrivateData] = useState('');
   const navigation = useNavigate();
 
   useEffect(() => {
     const fetchPrivateDate = async () => {
       const config = {
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('authToken')}`,
         },
       };
 
       try {
         const { data } = await axios.get(
-          "http://127.0.0.1:5000/api/private",
+          'http://127.0.0.1:5000/api/private',
           config
         );
         setPrivateData(data.data);
       } catch (error) {
-        localStorage.removeItem("authToken");
-        setError("You are not authorized please login");
-        navigation("/login");
+        localStorage.removeItem('authToken');
+        setError('You are not authorized please login');
+        navigation('/login');
       }
     };
 
@@ -48,7 +48,7 @@ const PrivateScreen = () => {
   }, []);
 
   const logoutHandler = () => {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem('authToken');
     // history.push("/");
   };
 
@@ -62,7 +62,7 @@ const PrivateScreen = () => {
         <Sidebar />
 
         <Routes>
-          <Route path="/" element={<Home />} exact />
+          <Route path="/home" element={<Home />} exact />
 
           <Route path="/news-post" exact element={<NewsPage />} />
 
