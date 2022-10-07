@@ -68,31 +68,78 @@ export default function Sidebar({ history }) {
             >
               <li className="sitebarListItem ml-3">All News</li>
             </Link>
-
-            <li className="sitebarListItem">
-              <NorthEastTwoTone className="sidebarIcon" />
-              IMMIGRATE TO CANADA
-            </li>
-            <li className="sitebarListItem">
-              <MenuBookTwoTone className="sidebarIcon" />
-              STUDY PERMIT
-            </li>
-            <li className="sitebarListItem">
-              <HailTwoTone className="sidebarIcon" />
-              BUSINESS IMMIGRATION
-            </li>
-            <li className="sitebarListItem">
-              <NordicWalkingTwoTone className="sidebarIcon" />
-              FAMILY SPONSORSHIP
-            </li>
-            <li className="sitebarListItem">
-              <NextWeekTwoTone className="sidebarIcon" />
-              WORK PERMIT
-            </li>
-            <li className="sitebarListItem">
-              <LocationOffTwoTone className="sidebarIcon" />
-              REFUSAL APPEALS AND INADMISSIBILITY
-            </li>
+            <Link
+              to="/dashboard/immigrate"
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+              }}
+            >
+              <li className="sitebarListItem">
+                <NorthEastTwoTone className="sidebarIcon" />
+                IMMIGRATE TO CANADA
+              </li>
+            </Link>
+            <Link
+              to="/dashboard/study-permit"
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+              }}
+            >
+              <li className="sitebarListItem">
+                <MenuBookTwoTone className="sidebarIcon" />
+                STUDY PERMIT
+              </li>
+            </Link>
+            <Link
+              to="/dashboard/business-immigrate"
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+              }}
+            >
+              <li className="sitebarListItem">
+                <HailTwoTone className="sidebarIcon" />
+                BUSINESS IMMIGRATION
+              </li>
+            </Link>
+            <Link
+              to="/dashboard/family-sponsor"
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+              }}
+            >
+              <li className="sitebarListItem">
+                <NordicWalkingTwoTone className="sidebarIcon" />
+                FAMILY SPONSORSHIP
+              </li>
+            </Link>
+            <Link
+              to="/dashboard/work-permit"
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+              }}
+            >
+              <li className="sitebarListItem">
+                <NextWeekTwoTone className="sidebarIcon" />
+                WORK PERMIT
+              </li>
+            </Link>
+            <Link
+              to="/dashboard/refusal"
+              style={{
+                textDecoration: 'none',
+                color: 'white',
+              }}
+            >
+              <li className="sitebarListItem">
+                <LocationOffTwoTone className="sidebarIcon" />
+                REFUSAL APPEALS AND INADMISSIBILITY
+              </li>
+            </Link>
           </ul>
         </div>
 

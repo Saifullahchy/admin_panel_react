@@ -16,6 +16,13 @@ import User from '../../pages/user/User';
 import NewsPage from '../../pages/News/NewsPage';
 import AllNews from '../../pages/News/AllNews';
 import EditNews from '../../pages/News/EditNews';
+import PrivateRoute from '../../routing/PrivateRoute';
+import Immigrate from '../../pages/Immigrate/Immigrate';
+import StudyPermit from '../../pages/studyPermit/study-permit';
+import BusinessImmigrate from '../../pages/business/business-immigration';
+import FamilySponsor from '../../pages/family/family-sponsor-page';
+import WorkPermit from '../../pages/workPermit/workPermit';
+import Refusal from '../../pages/refusal/refusal';
 
 const PrivateScreen = () => {
   const [error, setError] = useState('');
@@ -62,10 +69,80 @@ const PrivateScreen = () => {
         <Sidebar />
 
         <Routes>
-          <Route path="/home" element={<Home />} exact />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                {' '}
+                <Home />
+              </PrivateRoute>
+            }
+            exact
+          />
 
-          <Route path="/news-post" exact element={<NewsPage />} />
-
+          <Route
+            path="/news-post"
+            exact
+            element={
+              <PrivateRoute>
+                <NewsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/immigrate"
+            exact
+            element={
+              <PrivateRoute>
+                <Immigrate />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/study-permit"
+            exact
+            element={
+              <PrivateRoute>
+                <StudyPermit />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/business-immigrate"
+            exact
+            element={
+              <PrivateRoute>
+                <BusinessImmigrate />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/family-sponsor"
+            exact
+            element={
+              <PrivateRoute>
+                <FamilySponsor />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/work-permit"
+            exact
+            element={
+              <PrivateRoute>
+                <WorkPermit />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/refusal"
+            exact
+            element={
+              <PrivateRoute>
+                <Refusal />
+              </PrivateRoute>
+            }
+          />
           <Route path="/users" exact element={<UserList />} />
 
           <Route path="/news/all-news" exact element={<AllNews />} />

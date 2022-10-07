@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Delete } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Delete } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { apiGet, apiDelete } from '../../../utils/api';
 
 const AllNews = () => {
-  const [serverData, setData] = useState("");
+  const [serverData, setData] = useState('');
   const navigate = useNavigate();
 
   const getData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/news");
-
+      const res = await apiGet('news');
       const data = await res.data;
       return data;
     } catch (err) {
@@ -20,9 +20,7 @@ const AllNews = () => {
 
   const deleteItem = async (id) => {
     try {
-      const res = await axios
-        .delete(`http://localhost:5000/news/${id}`)
-        .then(() => window.location.reload(true));
+      await apiDelete(`news/${id}`).then(() => window.location.reload(true));
     } catch (err) {
       console.log(err);
     }
@@ -59,7 +57,7 @@ const AllNews = () => {
                     {serverData &&
                       serverData.map((item, idx) => {
                         return (
-                          <tr key={idx} style={{ height: "70px" }}>
+                          <tr key={idx} style={{ height: '70px' }}>
                             <td>{item.title}</td>
                             {/* <td
                               dangerouslySetInnerHTML={{
@@ -68,17 +66,17 @@ const AllNews = () => {
                             ></td> */}
                             <td
                               style={{
-                                display: "flex",
-                                alignItems: "center",
-                                height: "70px",
+                                display: 'flex',
+                                alignItems: 'center',
+                                height: '70px',
                               }}
                             >
                               <button
                                 style={{
-                                  background: "#0f0f0f",
-                                  color: "#FFF",
-                                  width: "64px",
-                                  borderRadius: "4px",
+                                  background: '#0f0f0f',
+                                  color: '#FFF',
+                                  width: '64px',
+                                  borderRadius: '4px',
                                 }}
                                 onClick={() => handleEdit(item._id)}
                               >
@@ -86,11 +84,11 @@ const AllNews = () => {
                               </button>
                               <Delete
                                 style={{
-                                  fontSize: "30px",
-                                  marginLeft: "30px",
-                                  textAlign: "center",
-                                  cursor: "pointer",
-                                  color: "#991A1E",
+                                  fontSize: '30px',
+                                  marginLeft: '30px',
+                                  textAlign: 'center',
+                                  cursor: 'pointer',
+                                  color: '#991A1E',
                                 }}
                                 onClick={() => {
                                   deleteItem(item._id);

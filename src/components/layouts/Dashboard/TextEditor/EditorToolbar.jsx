@@ -1,6 +1,7 @@
-import React from "react";
-import { Quill } from "react-quill";
-import "./textEditor.css";
+import React from 'react';
+import { Quill } from 'react-quill';
+import QuillBetterTable from 'quill-better-table';
+import './textEditor.css';
 
 // Custom Undo button icon component for Quill editor. You can import it directly
 // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
@@ -35,27 +36,29 @@ function redoChange() {
 }
 
 // Add sizes to whitelist and register them
-const Size = Quill.import("formats/size");
-Size.whitelist = ["extra-small", "small", "medium", "large"];
+const Size = Quill.import('formats/size');
+Size.whitelist = ['extra-small', 'small', 'medium', 'large'];
 Quill.register(Size, true);
 
+Quill.register('modules/better-table', QuillBetterTable);
 // Add fonts to whitelist and register them
-const Font = Quill.import("formats/font");
+const Font = Quill.import('formats/font');
 Font.whitelist = [
-  "arial",
-  "comic-sans",
-  "courier-new",
-  "georgia",
-  "helvetica",
-  "Inter",
-  "lucida",
+  'arial',
+  'comic-sans',
+  'courier-new',
+  'georgia',
+  'helvetica',
+  'Inter',
+  'lucida',
 ];
 Quill.register(Font, true);
 
 // Modules object for setting up the Quill editor
 export const modules = (props) => ({
   toolbar: {
-    container: "#" + props,
+    table: true,
+    container: '#' + props,
     handlers: {
       undo: undoChange,
       redo: redoChange,
@@ -70,25 +73,26 @@ export const modules = (props) => ({
 
 // Formats objects for setting up the Quill editor
 export const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "align",
-  "strike",
-  "script",
-  "blockquote",
-  "background",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-  "color",
-  "code-block",
+  'header',
+  'font',
+  'size',
+  'bold',
+  'italic',
+  'underline',
+  'align',
+  'strike',
+  'script',
+  'blockquote',
+  'background',
+  'list',
+  'bullet',
+  'indent',
+  'link',
+  'image',
+  'video',
+  'color',
+  'code-block',
+  'table',
 ];
 
 // Quill Toolbar component
@@ -157,10 +161,15 @@ export const QuillToolbar = (props) => {
             <button className="ql-image" />
             <button className="ql-video" />
           </span>
+
           <span className="ql-formats">
             <button className="ql-formula" />
             <button className="ql-code-block" />
             <button className="ql-clean" />
+          </span>
+
+          <span className="ql-formats">
+            <button className="ql-table"></button>
           </span>
           <span className="ql-formats">
             <button className="ql-undo">

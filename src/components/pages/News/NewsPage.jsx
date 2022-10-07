@@ -1,19 +1,20 @@
-import React, { useCallback, useEffect, useState } from "react";
-import ReactQuill from "react-quill";
-import "./TextEditor.css";
-import "react-quill/dist/quill.snow.css";
+import React, { useCallback, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+import './TextEditor.css';
+import 'react-quill/dist/quill.snow.css';
 import EditorToolbar, {
   modules,
   formats,
-} from "../../layouts/Dashboard/TextEditor/EditorToolbar";
-import axios from "axios";
+} from '../../layouts/Dashboard/TextEditor/EditorToolbar';
+import axios from 'axios';
+import { apiPost } from '../../../utils/api';
 
 const NewsPage = () => {
   const [userInfo, setuserInfo] = useState({
-    title: "",
-    subTitle: "",
-    description: "",
-    image: "",
+    title: '',
+    subTitle: '',
+    description: '',
+    image: '',
   });
   const formData = new FormData();
   const onChangeValue = (e) => {
@@ -34,24 +35,23 @@ const NewsPage = () => {
 
   const [isError, setError] = useState(null);
   const addDetails = async (event) => {
-    formData.append("title", userInfo.title);
-    formData.append("subtitle", userInfo.subTitle);
-    formData.append("description", userInfo.description);
-    formData.append("image", userInfo.image);
+    formData.append('title', userInfo.title);
+    formData.append('subtitle', userInfo.subTitle);
+    formData.append('description', userInfo.description);
+    formData.append('image', userInfo.image);
     try {
       event.preventDefault();
       event.persist();
       if (userInfo.description.length < 50) {
-        setError("Required, Add description minimum length 50 characters");
+        setError('Required, Add description minimum length 50 characters');
         return;
       }
-      axios
-        .post(`http://localhost:5000/news`, formData)
+      apiPost(`news`, formData)
         .then(() => {
-          userInfo.title = "";
-          userInfo.subTitle="";
-          userInfo.description = "";
-          userInfo.image = "";
+          userInfo.title = '';
+          userInfo.subTitle = '';
+          userInfo.description = '';
+          userInfo.image = '';
         })
         .then(() => {
           window.location.reload(true);
@@ -60,23 +60,23 @@ const NewsPage = () => {
       throw error;
     }
   };
-  console.log(userInfo);
+  // console.log(userInfo);
 
   return (
     <div className="home">
       <div className="container_news">
         <div className="row">
           <form onSubmit={addDetails} className="update__forms">
-            <h3 className="myaccount-content" style={{ textAlign: "center" }}>
-              {" "}
+            <h3 className="myaccount-content" style={{ textAlign: 'center' }}>
+              {' '}
               Add News
             </h3>
 
             <div className="form-row">
               <div className="form-group col-md-12">
                 <label className="font-weight-bold">
-                  {" "}
-                  Title <span className="required"> * </span>{" "}
+                  {' '}
+                  Title <span className="required"> * </span>{' '}
                 </label>
                 <input
                   type="text"
@@ -90,8 +90,8 @@ const NewsPage = () => {
               </div>
               <div className="form-group col-md-12">
                 <label className="font-weight-bold">
-                  {" "}
-                  Sub title <span className="required"> * </span>{" "}
+                  {' '}
+                  Sub title <span className="required"> * </span>{' '}
                 </label>
                 <input
                   type="text"
@@ -117,18 +117,18 @@ const NewsPage = () => {
               </div>
               <div className="form-group col-md-12 editor">
                 <label className="font-weight-bold">
-                  {" "}
-                  Description <span className="required"> * </span>{" "}
+                  {' '}
+                  Description <span className="required"> * </span>{' '}
                 </label>
-                <EditorToolbar toolbarId={"t1"} />
+                <EditorToolbar toolbarId={'t1'} />
                 <ReactQuill
                   className="editor_des"
                   theme="snow"
-                  style={{ height: "400px" }}
+                  style={{ height: '400px' }}
                   value={userInfo.description}
                   onChange={ondescription}
-                  placeholder={"Write something awesome..."}
-                  modules={modules("t1")}
+                  placeholder={'Write something awesome...'}
+                  modules={modules('t1')}
                   formats={formats}
                 />
               </div>
@@ -138,8 +138,8 @@ const NewsPage = () => {
               {isError !== null && <div className="errors"> {isError} </div>}
               <div className="form-group col-sm-12 text-right">
                 <button type="submit" className="btn btn__theme">
-                  {" "}
-                  Submit{" "}
+                  {' '}
+                  Submit{' '}
                 </button>
               </div>
             </div>

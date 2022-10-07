@@ -1,23 +1,25 @@
-import React, { useCallback, useEffect, useState } from "react";
-import ReactQuill from "react-quill";
-import "./TextEditor.css";
-import "react-quill/dist/quill.snow.css";
+import React, { useCallback, useEffect, useState } from 'react';
+import ReactQuill from 'react-quill';
+import './TextEditor.css';
+import 'react-quill/dist/quill.snow.css';
 import EditorToolbar, {
   modules,
   formats,
-} from "../../layouts/Dashboard/TextEditor/EditorToolbar";
+} from '../../layouts/Dashboard/TextEditor/EditorToolbar';
 
-import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { apiPut } from '../../../utils/api';
+import { URL } from '../../../utils/getUrl';
 const EditNews = () => {
   let navigate = useNavigate();
 
   const [userInfo, setuserInfo] = useState({
-    description: "",
+    description: '',
   });
   // const id = window.location.href.split("/")[4];
   const { id } = useParams();
-  const [data, setData] = useState("");
+  const [data, setData] = useState('');
 
   const onChangeValue = (e) => {
     setuserInfo({
@@ -55,37 +57,35 @@ const EditNews = () => {
       event.preventDefault();
       event.persist();
       if (userInfo.description.length < 50) {
-        setError("Required, Add description minimum length 50 characters");
+        setError('Required, Add description minimum length 50 characters');
         return;
       }
-      axios
-        .put(`http://localhost:5000/news/${id}`, {
-          description: userInfo.description,
-        })
-        .then(() => {
-          window.location.reload(true);
-        });
+      apiPut(`news/${id}`, {
+        description: userInfo.description,
+      }).then(() => {
+        window.location.reload(true);
+      });
     } catch (error) {
       throw error;
     }
   };
-  console.log(userInfo.image);
+
   return (
     <div className="home">
       <div className="container_news">
         <div className="row">
           <div>
             <form onSubmit={updateDetails} className="update__forms">
-              <h3 className="myaccount-content" style={{ textAlign: "center" }}>
-                {" "}
+              <h3 className="myaccount-content" style={{ textAlign: 'center' }}>
+                {' '}
                 Edit News
               </h3>
 
               <div className="">
                 <div className=" col-md-12 ">
                   <label className="font-weight-bold h4 ">
-                    {" "}
-                    Title <span className=""> * </span>{" "}
+                    {' '}
+                    Title <span className=""> * </span>{' '}
                   </label>
                   <input
                     type="text"
@@ -99,16 +99,16 @@ const EditNews = () => {
                   <div
                     className=" col-md-12 d-flex flex-col "
                     style={{
-                      marginTop: "30px",
+                      marginTop: '30px',
                     }}
                   >
                     <p className="text-center">Feature Image</p>
                     <img
-                      src={`http://localhost:5000/static/${data.image}`}
+                      src={`${URL}/static/${data.image}`}
                       alt=""
                       className="rounded mx-auto d-block"
                       style={{
-                        width: "400px",
+                        width: '400px',
                       }}
                     />
                   </div>
@@ -116,19 +116,19 @@ const EditNews = () => {
                 <div
                   className="col-md-12 editor"
                   style={{
-                    marginTop: "30px",
+                    marginTop: '30px',
                   }}
                 >
                   <label className="font-weight-bold">Description</label>
-                  <EditorToolbar toolbarId={"t1"} />
+                  <EditorToolbar toolbarId={'t1'} />
                   <ReactQuill
                     className="editor_des"
                     theme="snow"
-                    style={{ height: "400px" }}
+                    style={{ height: '400px' }}
                     value={userInfo.description}
                     onChange={ondescription}
-                    placeholder={"Write something awesome..."}
-                    modules={modules("t1")}
+                    placeholder={'Write something awesome...'}
+                    modules={modules('t1')}
                     formats={formats}
                   />
                 </div>

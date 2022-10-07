@@ -15,15 +15,7 @@ const App = () => {
   return (
     <div className="app">
       <Routes>
-        <Route
-          path="/dashboard/*"
-          element={
-            <PrivateScreen>
-              <PrivateRoute />
-            </PrivateScreen>
-          }
-          exact
-        />
+        <Route path="/dashboard/*" element={<PrivateScreen />} exact />
 
         <Route path="/login" element={<LoginScreen />} />
 

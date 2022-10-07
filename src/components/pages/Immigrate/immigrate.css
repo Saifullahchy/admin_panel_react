@@ -1,0 +1,9 @@
+.btn_primary{
+    width: 100%;
+    background: #991A1E;
+    color:white;
+    border: none;
+}
+.btn_primary:hover{
+ background-color: cadetblue !important;
+}
